@@ -1,3 +1,7 @@
+# Ignore vim/windows files
+*.swp
+*.swo
+
 # Don’t commit the following directories created by pub.
 .buildlog
 .pub/

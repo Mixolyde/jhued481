@@ -2,7 +2,6 @@
 
 #assigments {
 	
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     width: 60%;
     border-collapse: collapse;
     margin-left:20%; 
@@ -30,19 +29,27 @@
     background-color: #0066CC;
 }
 
+.footer-social { float: right; margin-top:5px;height:72px}
+.footer-social ul { float:left; padding:0;margin:0; }
+.footer-social li { display: inline;float:right;}
+.footer-social span { float: left;}
+
+body
+{
+    font-family: Helvetica, "Trebuchet MS", Arial, sans-serif;
+	  color:#AFAFAF;
+    background-color: black;
+}
+
 h1
 {
-font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	color:#000;
 	font-size: 180%;
 	margin: 0 0 .5em;
 	text-align: center;
 }
 h2
 {
-text-align:center;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	color:#000;
+  text-align:center;
 	font-size: 100%;
 	margin: 0 0 .5em;
 	
