@@ -55,3 +55,8 @@ h2
 	margin: 0 0 .5em;
 	
 }
+
+a:link { color: #58BB12; }
+a:visited { color: #58BB12; }
+a:hover { color: #FFFFFF; }
+a:active { color: #FFFFFF; }
