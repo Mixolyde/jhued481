@@ -34,67 +34,67 @@
       <form action="results.html" method="get">
          <fieldset id="message" class="checks">
            <legend>Message</legend>
-           <input type="checkbox" name="message1" value="congratulations">
-           <label for="message1">Congratulations!</label> 
-           <input type="checkbox" name="message2" value="birthday">
-           <label for="message2">Happy Birthday!</label>
-           <input type="checkbox" name="message3" value="anniversary">
-           <label for="message3">Happy Anniversary!</label>
-           <input type="checkbox" name="message4" value="iloveyou">
-           <label for="message4">I Love You!</label>
-           <input type="checkbox" name="message5" value="custom">
-           <label for="message5">Custom Message:</label>
+           <input type="checkbox" name="congratsMsg" value="congratulations">
+           <label for="congratsMsg">Congratulations!</label> 
+           <input type="checkbox" name="birthdayMsg" value="birthday">
+           <label for="birthdayMsg">Happy Birthday!</label>
+           <input type="checkbox" name="anniversaryMsg" value="anniversary">
+           <label for="anniversaryMsg">Happy Anniversary!</label>
+           <input type="checkbox" name="iloveyouMsg" value="iloveyou">
+           <label for="iloveyouMsg">I Love You!</label>
+           <input type="checkbox" name="CustomText" value="custom">
+           <label for="CustomText">Custom Message:</label>
            <textarea name="messagetext" 
            placeholder="Enter custom message here (max 250 characters)"></textarea>
          </fieldset>
          <fieldset id="billingAddress" class="text">
            <legend>Billing Address</legend>
-           <label for="firstname">First Name</label>
-           <input type="text" name="firstname" id="billFName">
-           <label for="lastname">Last Name</label> 
-           <input type="text" name="lastname" id="billLName">
-           <label for="address">Street Address</label> 
-           <input type="text" name="address" id="billStreet" > 
-           <label for="city">City</label> 
-           <input type="text" name="city" id="billCity"> 
-           <label for="state">State</label>
-           <select name="state" id="state">
+           <label for="Billingfirstname">First Name</label>
+           <input type="text" name="Billingfirstname" id="billFName">
+           <label for="Billinglastname">Last Name</label> 
+           <input type="text" name="Billinglastname" id="billLName">
+           <label for="Billingaddress">Street Address</label> 
+           <input type="text" name="Billingaddress" id="billStreet" > 
+           <label for="Billingcity">City</label> 
+           <input type="text" name="Billingcity" id="billCity"> 
+           <label for="Billingstate">State</label>
+           <select name="Billingstate" id="state">
              <script>stateOptions();</script>
            </select>
-           <label for="zip">Zip</label> 
-           <input type="text" name="zip" id="billZip">
-           <label for="phone">Phone</label> 
-           <input type="text" name="phone" id="billPhone"> 
+           <label for="Billingzip">Zip</label> 
+           <input type="text" name="Billingzip" id="billZip">
+           <label for="Billingphone">Phone</label> 
+           <input type="text" name="Billingphone" id="billPhone"> 
          </fieldset>
          <fieldset id="deliveryAddress" class="text">
            <legend>Delivery Address</legend>
            <div class="inline">
-           <input type="checkbox" name="sameas" value="sameas"/>
-           <label for="sameas">same as billing address</label>
+           <input type="checkbox" name="SameAddress" value="SameAddress"/>
+           <label for="SameAddress">same as billing address</label>
            </div>
-           <label for="firstname">First Name</label> 
-           <input type="text" name="firstname" id="delivFName">
-           <label for="lastname">Last Name</label> 
-           <input type="text" name="lastname" id="delivLName">
-           <label for="address">Street Address</label> 
-           <input type="text" name="address" id="delivStreet"> 
-           <label for="city">City</label> 
-           <input type="text" name="city" id="delivCity"> 
-           <label for="state">State</label>
-           <select name="state" id="state">
+           <label for="Deliveryfirstname">First Name</label> 
+           <input type="text" name="Deliveryfirstname" id="delivFName">
+           <label for="Deliverylastname">Last Name</label> 
+           <input type="text" name="Deliverylastname" id="delivLName">
+           <label for="Deliveryaddress">Street Address</label> 
+           <input type="text" name="Deliveryaddress" id="delivStreet"> 
+           <label for="Deliverycity">City</label> 
+           <input type="text" name="Deliverycity" id="delivCity"> 
+           <label for="Deliverystate">State</label>
+           <select name="Deliverystate" id="delivstate">
              <script>stateOptions();</script>
            </select>
-           <label for="zip">Zip</label> 
-           <input type="text" name="zip" id="delivZip" size="10">
-           <label for="phone">Phone</label> 
-           <input type="text" name="phone" id="delivPhone"> 
+           <label for="Deliveryzip">Zip</label> 
+           <input type="text" name="Deliveryzip" id="delivZip" size="10">
+           <label for="Deliveryphone">Phone</label> 
+           <input type="text" name="Deliveryphone" id="delivPhone"> 
          </fieldset>
          <fieldset id="deliveryDate" class="checks">
            <legend>Delivery Date</legend></br>
-           <select name="month" id="month">
+           <select name="Deliverymonth" id="month">
 	           <script>monthOptions();</script>
            </select>
-           <select name="day" id="day">
+           <select name="Deliveryday" id="day">
 	           <option value="1">1</option>
 	           <option value="2">2</option>
 	           <option value="3">3</option>
@@ -127,7 +127,7 @@
 	           <option value="30">30</option>
 	           <option value="31">31</option>
            </select>
-           <select name="year" id="year">
+           <select name="Deliveryyear" id="year">
 	           <option value="2015">2015</option>
 	           <option value="2016">2016</option>
 	           <option value="2017">2017</option>
@@ -136,40 +136,40 @@
          <fieldset id="paymentInfo" class="text">
 			     <legend>Payment</legend>
            <div class="inline">
-           <input type="radio" name="cardtype" value="visa"/>
-           <label for="cardtype">Visa</label>
-           <input type="radio" name="cardtype" value="mastercard"/>
-           <label for="cardtype">MasterCard</label>
-           <input type="radio" name="cardtype" value="discover"/>
-           <label for="cardtype">Discover</label>
-           <input type="radio" name="cardtype" value="american"/>
-           <label for="cardtype">American Express</label>
+           <input type="radio" name="PaymentType" value="visa"/>
+           <label for="PaymentType">Visa</label>
+           <input type="radio" name="PaymentType" value="mastercard"/>
+           <label for="PaymentType">MasterCard</label>
+           <input type="radio" name="PaymentType" value="discover"/>
+           <label for="PaymentType">Discover</label>
+           <input type="radio" name="PaymentType" value="american"/>
+           <label for="PaymentType">American Express</label>
            </div>
-           <label for="cardno">Card #</label> 
-           <input type="text" name="cardno" id="cardno">
-           <label for="month">Expiration</label>
-           <select name="month" id="month">
+           <label for="CardNumber">Card #</label> 
+           <input type="text" name="CardNumber" id="CardNumber">
+           <label for="Expmonth">Expiration</label>
+           <select name="Expmonth" id="Expmonth">
              <script>monthOptions();</script>
            </select>
-           <select name="year" id="year">
+           <select name="Expyear" id="Expyear">
 	           <option value="2015">2015</option>
 	           <option value="2016">2016</option>
 	           <option value="2017">2017</option>
            </select></br>
-           <label for="cvv">CVV</label> 
-           <input type="text" name="cvv" id="cvv"> 
+           <label for="CVVValue">CVV</label> 
+           <input type="text" name="CVVValue" id="CVVValue"> 
          </fieldset>
          <fieldset id="createAccount" class="text">
 			     <legend>Create Account?</legend>
            <p>To be able to access your purchase history and make changes to your order,
            enter a name and password to create an account.
            </p>
-           <label for="username">Username</label> 
-           <input type="text" name="username" id="username"> 
-           <label for="password">Password</label> 
-           <input type="text" name="password" id="password"> 
-           <label for="verify">Password (Verify)</label> 
-           <input type="text" name="verify" id="verify"> 
+           <label for="Newusername">Username</label> 
+           <input type="text" name="Newusername" id="Newusername"> 
+           <label for="password1">Password</label> 
+           <input type="text" name="password1" id="password1"> 
+           <label for="password1">Password (Verify)</label> 
+           <input type="text" name="password1" id="password1"> 
          </fieldset>
          <div id="buttonContainer">
             <input type="submit" value="Place Order" id="orderButton" />
