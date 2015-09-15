@@ -256,6 +256,10 @@ fieldset.checks textarea {
    height: 50px;
 }
 
+fieldset.checks label {
+   margin-left: 25px;
+}
+
 fieldset.text label {
    width: 8em;
    text-align: right;
