@@ -4,7 +4,7 @@ location.search.substr(1).split("&").forEach(function(item) {var s = item.split(
 function printQueryDict(){
   for (k in querydict)
   {
-    document.write(k + "="+dico[k]+"<br/>\n");
+    document.write(k + "="+querydict[k]+"<br/>\n");
   }
 }
 //return state codes for drop down
