@@ -146,7 +146,7 @@
            <label for="PaymentType">American Express</label>
            </div>
            <label for="CardNumber">Card #</label> 
-           <input type="text" name="CardNumber" id="CardNumber">
+           <input type="text" name="CardNumber" id="CardNumber" autocomplete="off">
            <label for="Expmonth">Expiration</label>
            <select name="Expmonth" id="Expmonth">
              <script>monthOptions();</script>
@@ -157,7 +157,7 @@
 	           <option value="2017">2017</option>
            </select></br>
            <label for="CVVValue">CVV</label> 
-           <input type="text" name="CVVValue" id="CVVValue"> 
+           <input type="text" name="CVVValue" id="CVVValue" autocomplete="off"> 
          </fieldset>
          <fieldset id="createAccount" class="text">
 			     <legend>Create Account?</legend>
@@ -167,9 +167,9 @@
            <label for="Newusername">Username</label> 
            <input type="text" name="Newusername" id="Newusername"> 
            <label for="password1">Password</label> 
-           <input type="text" name="password1" id="password1"> 
+           <input type="text" name="password1" id="password1" autocomplete="off"> 
            <label for="password2">Password (Verify)</label> 
-           <input type="text" name="password2" id="password2"> 
+           <input type="text" name="password2" id="password2" autocomplete="off"> 
          </fieldset>
          <div id="buttonContainer">
             <input type="submit" value="Place Order" id="orderButton" />
