@@ -42,29 +42,30 @@
            <label for="anniversaryMsg">Happy Anniversary!</label>
            <input type="checkbox" name="iloveyouMsg" value="iloveyou">
            <label for="iloveyouMsg">I Love You!</label>
-           <input type="checkbox" name="customMsg" value="custom">
+           <input type="checkbox" name="customMsg" value="custom" 
+           onClick="customClick()">
            <label for="CustomText">Custom Message:</label>
-           <textarea name="CustomText" 
+           <textarea name="CustomText" id="customTextArea"
            placeholder="Enter custom message here (max 250 characters)"></textarea>
          </fieldset>
          <fieldset id="billingAddress" class="text">
            <legend>Billing Address</legend>
            <label for="Billingfirstname">First Name</label>
-           <input type="text" name="Billingfirstname" id="billFName" autofocus="true">
+           <input type="text" name="Billingfirstname" id="billFName" autofocus="true" required="true">
            <label for="Billinglastname">Last Name</label> 
-           <input type="text" name="Billinglastname" id="billLName">
+           <input type="text" name="Billinglastname" id="billLName" required="true">
            <label for="Billingaddress">Street Address</label> 
-           <input type="text" name="Billingaddress" id="billStreet" > 
+           <input type="text" name="Billingaddress" id="billStreet" required="true"> 
            <label for="Billingcity">City</label> 
-           <input type="text" name="Billingcity" id="billCity"> 
+           <input type="text" name="Billingcity" id="billCity" required="true"> 
            <label for="Billingstate">State</label>
-           <select name="Billingstate" id="billState">
+           <select name="Billingstate" id="billState" required="true">
              <script>stateOptions();</script>
            </select>
            <label for="Billingzip">Zip</label> 
-           <input type="text" name="Billingzip" id="billZip" placeholder="12345-6789">
+           <input type="text" name="Billingzip" id="billZip" placeholder="12345-6789" required="true">
            <label for="Billingphone">Phone</label> 
-           <input type="text" name="Billingphone" id="billPhone" placeholder="999-999-9999"> 
+           <input type="text" name="Billingphone" id="billPhone" placeholder="999-999-9999" required="true"> 
          </fieldset>
          <fieldset id="deliveryAddress" class="text">
            <legend>Delivery Address</legend>
@@ -74,28 +75,28 @@
            <label for="SameAddress">same as billing address</label>
            </div>
            <label for="Deliveryfirstname">First Name</label> 
-           <input type="text" name="Deliveryfirstname" id="delivFName">
+           <input type="text" name="Deliveryfirstname" id="delivFName" required="true">
            <label for="Deliverylastname">Last Name</label> 
-           <input type="text" name="Deliverylastname" id="delivLName">
+           <input type="text" name="Deliverylastname" id="delivLName" required="true">
            <label for="Deliveryaddress">Street Address</label> 
-           <input type="text" name="Deliveryaddress" id="delivStreet"> 
+           <input type="text" name="Deliveryaddress" id="delivStreet" required="true"> 
            <label for="Deliverycity">City</label> 
-           <input type="text" name="Deliverycity" id="delivCity"> 
+           <input type="text" name="Deliverycity" id="delivCity" required="true"> 
            <label for="Deliverystate">State</label>
-           <select name="Deliverystate" id="delivState">
+           <select name="Deliverystate" id="delivState" required="true">
              <script>stateOptions();</script>
            </select>
            <label for="Deliveryzip">Zip</label> 
-           <input type="text" name="Deliveryzip" id="delivZip" size="10" placeholder="12345-6789">
+           <input type="text" name="Deliveryzip" id="delivZip" required="true" size="10" placeholder="12345-6789">
            <label for="Deliveryphone">Phone</label> 
-           <input type="text" name="Deliveryphone" id="delivPhone" placeholder="999-999-9999"> 
+           <input type="text" name="Deliveryphone" id="delivPhone" required="true" placeholder="999-999-9999"> 
          </fieldset>
          <fieldset id="deliveryDate" class="checks">
            <legend>Delivery Date</legend></br>
-           <select name="Deliverymonth" id="month">
+           <select name="Deliverymonth" id="month" required="true">
 	           <script>monthOptions();</script>
            </select>
-           <select name="Deliveryday" id="day">
+           <select name="Deliveryday" id="day" required="true">
 	           <option value="1">1</option>
 	           <option value="2">2</option>
 	           <option value="3">3</option>
@@ -128,7 +129,7 @@
 	           <option value="30">30</option>
 	           <option value="31">31</option>
            </select>
-           <select name="Deliveryyear" id="year">
+           <select name="Deliveryyear" id="year" required="true">
 	           <option value="2015">2015</option>
 	           <option value="2016">2016</option>
 	           <option value="2017">2017</option>
@@ -137,7 +138,7 @@
          <fieldset id="paymentInfo" class="text">
 			     <legend>Payment</legend>
            <div class="inline">
-           <input type="radio" name="PaymentType" value="visa"/>
+           <input type="radio" name="PaymentType" value="visa" checked="true"/>
            <label for="PaymentType">Visa</label>
            <input type="radio" name="PaymentType" value="mastercard"/>
            <label for="PaymentType">MasterCard</label>
@@ -147,18 +148,18 @@
            <label for="PaymentType">American Express</label>
            </div>
            <label for="CardNumber">Card #</label> 
-           <input type="text" name="CardNumber" id="CardNumber" autocomplete="off">
+           <input type="text" name="CardNumber" id="CardNumber" required="true" autocomplete="off">
            <label for="Expmonth">Expiration</label>
-           <select name="Expmonth" id="Expmonth">
+           <select name="Expmonth" id="Expmonth" required="true">
              <script>monthOptions();</script>
            </select>
-           <select name="Expyear" id="Expyear">
+           <select name="Expyear" id="Expyear" required="true">
 	           <option value="2015">2015</option>
 	           <option value="2016">2016</option>
 	           <option value="2017">2017</option>
            </select></br>
            <label for="CVVValue">CVV</label> 
-           <input type="text" name="CVVValue" id="CVVValue" autocomplete="off"> 
+           <input type="text" name="CVVValue" id="CVVValue" required="true" autocomplete="off"> 
          </fieldset>
          <fieldset id="createAccount" class="text">
 			     <legend>Create Account?</legend>
@@ -166,11 +167,11 @@
            enter a name and password to create an account.
            </p>
            <label for="Newusername">Username</label> 
-           <input type="text" name="Newusername" id="Newusername"> 
+           <input type="text" name="Newusername" id="Newusername" required="true"> 
            <label for="password1">Password</label> 
-           <input type="text" name="password1" id="password1" autocomplete="off"> 
+           <input type="text" name="password1" id="password1" required="true" autocomplete="off"> 
            <label for="password2">Password (Verify)</label> 
-           <input type="text" name="password2" id="password2" autocomplete="off"> 
+           <input type="text" name="password2" id="password2" required="true" autocomplete="off"> 
          </fieldset>
          <div id="buttonContainer">
             <input type="submit" value="Place Order" id="orderButton" />

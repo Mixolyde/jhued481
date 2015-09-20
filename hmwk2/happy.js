@@ -113,3 +113,20 @@ function disableDeliveryAddressInputs(disable){
     item.disabled = disable;
     });
 }
+function requireDeliveryAddressInputs(require){
+  deliveryInputs.forEach(function (item, index, array) {
+    item.required = require;
+    });
+}
+
+// determine if custom message is required
+var customRequired = false;
+function customClick () {
+  if (customRequired == false){
+    customRequired = true;
+    document.getElementById("customTextArea").required=true;
+  } else {
+    customRequired = false;
+    document.getElementById("customTextArea").required=false;
+  }
+}
