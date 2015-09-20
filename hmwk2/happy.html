@@ -10,7 +10,7 @@
    <script src="happy.js" type="text/javascript"></script>
 </head>
 
-<body>
+<body onload="initPage()">
    <div class="container">
       <header>
          <h1>
@@ -31,7 +31,7 @@
    <article>
       <h2>Place an Order</h2>
       <div id="errorText"></div>
-      <form action="results.html" method="get">
+      <form action="results.html" method="get" id="orderForm">
          <fieldset id="message" class="checks">
            <legend>Message</legend>
            <input type="checkbox" name="congratsMsg" value="congratulations">
@@ -58,7 +58,7 @@
            <label for="Billingcity">City</label> 
            <input type="text" name="Billingcity" id="billCity"> 
            <label for="Billingstate">State</label>
-           <select name="Billingstate" id="state">
+           <select name="Billingstate" id="billState">
              <script>stateOptions();</script>
            </select>
            <label for="Billingzip">Zip</label> 
@@ -69,7 +69,8 @@
          <fieldset id="deliveryAddress" class="text">
            <legend>Delivery Address</legend>
            <div class="inline">
-           <input type="checkbox" name="SameAddress" value="SameAddress"/>
+           <input type="checkbox" name="SameAddress" value="SameAddress" 
+           onClick="sameAddressClick()"/>
            <label for="SameAddress">same as billing address</label>
            </div>
            <label for="Deliveryfirstname">First Name</label> 
@@ -81,7 +82,7 @@
            <label for="Deliverycity">City</label> 
            <input type="text" name="Deliverycity" id="delivCity"> 
            <label for="Deliverystate">State</label>
-           <select name="Deliverystate" id="delivstate">
+           <select name="Deliverystate" id="delivState">
              <script>stateOptions();</script>
            </select>
            <label for="Deliveryzip">Zip</label> 

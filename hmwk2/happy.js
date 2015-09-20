@@ -1,3 +1,20 @@
+//GLOBALs
+var deliveryInputs;
+
+//init globals
+function initPage(){
+  deliveryInputs = [
+  document.getElementById("delivFName"),
+  document.getElementById("delivLName"),
+  document.getElementById("delivStreet"),
+  document.getElementById("delivCity"),
+  document.getElementById("delivState"),
+  document.getElementById("delivZip"),
+  document.getElementById("delivPhone"),
+  ];
+}
+
+
 var querydict = {};
 location.search.substr(1).split("&").forEach(function(item) {var s = item.split("="), k = s[0], v = s[1] && decodeURIComponent(s[1]); (k in querydict) ? querydict[k].push(v) : querydict[k] = [v]})
 
@@ -76,4 +93,23 @@ function monthOptions() {
 	  <option value="10">October</option>
 	  <option value="11">November</option>
 	  <option value="12">December</option> `);
+}
+
+var deliveryEnabled = true;
+
+function sameAddressClick () {
+  if (deliveryEnabled == true){
+    deliveryEnabled = false;
+    disableDeliveryAddressInputs(true);
+  } else {
+    deliveryEnabled = true;
+    disableDeliveryAddressInputs(false);
+  }
+}
+
+//set true to disable all inputs
+function disableDeliveryAddressInputs(disable){
+  deliveryInputs.forEach(function (item, index, array) {
+    item.disabled = disable;
+    });
 }
