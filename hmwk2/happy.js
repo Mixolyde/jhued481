@@ -100,21 +100,17 @@ var deliveryEnabled = true;
 function sameAddressClick () {
   if (deliveryEnabled == true){
     deliveryEnabled = false;
-    disableDeliveryAddressInputs(true);
+    switchDeliveryAddressInputs(true, false);
   } else {
     deliveryEnabled = true;
-    disableDeliveryAddressInputs(false);
+    switchDeliveryAddressInputs(false, true);
   }
 }
 
 //set true to disable all inputs
-function disableDeliveryAddressInputs(disable){
+function switchDeliveryAddressInputs(disable, require){
   deliveryInputs.forEach(function (item, index, array) {
     item.disabled = disable;
-    });
-}
-function requireDeliveryAddressInputs(require){
-  deliveryInputs.forEach(function (item, index, array) {
     item.required = require;
     });
 }
@@ -129,4 +125,24 @@ function customClick () {
     customRequired = false;
     document.getElementById("customTextArea").required=false;
   }
+}
+
+function customValidate(){
+  //reset error box
+  var errorText = document.getElementById("errorText");
+  errorText.innerHTML = "";
+  errorText.style.display = "none";
+  box1 = document.getElementById("congratsMsg");
+  box2 = document.getElementById("birthdayMsg");
+  box3 = document.getElementById("anniversaryMsg");
+  box4 = document.getElementById("iloveyouMsg");
+  box5 = document.getElementById("customMsg");
+  if( !box1.checked && !box2.checked && !box3.checked && 
+      !box4.checked && !box5.checked) {
+    errorText.innerHTML = "You must select at least one message";
+    errorText.style.display = "block";
+    return false;
+  }
+  //test bad validate
+  return true;
 }
