@@ -143,6 +143,12 @@ function customValidate(){
     errorText.style.display = "block";
     return false;
   }
+  if( document.getElementById("password1").value !=
+      document.getElementById("password2").value){
+    errorText.innerHTML = "Your passwords must match";
+    errorText.style.display = "block";
+    return false;
+  }
   //test bad validate
   return true;
 }
