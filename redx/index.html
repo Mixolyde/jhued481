@@ -23,7 +23,11 @@
         $('#slider').nivoSlider();
     });
     </script>
-	
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!--
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADatCl5zT7uN7Tl2ybPHwbNEVPHhOxZ8A&callback=initMap">
+    </script>	-->
 
 	<!-- End JQuery and Scripts-->
 </head>
@@ -167,7 +171,10 @@
       <section class="full">
          <h3>Map</h3>
          <p>Our offices are located across the Washington Metro Area to best suit your needs!
+         Find one nearest your location:
          </p>
+         <div id="locationMap">
+         </div>
       </section>
 	 </div>
 	<!--end holder-->
