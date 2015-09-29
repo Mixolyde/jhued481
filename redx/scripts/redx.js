@@ -21,17 +21,15 @@ function initPage(){
     } else {
       fail();
     }
-
-    var mapOptions = {    
-      center: new google.maps.LatLng(38.898013, -77.036539),
-      zoom: 9 }; 
-    map = new google.maps.Map(
-      document.getElementById("locationMap"),
-      mapOptions); 
-    initMap();
 }
 
 function initMap(){
+  var mapOptions = {    
+    center: new google.maps.LatLng(38.898013, -77.036539),
+    zoom: 9 }; 
+  map = new google.maps.Map(
+    document.getElementById("locationMap"),
+    mapOptions); 
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(38.898013, -77.036539),
     map: map,
