@@ -24,17 +24,31 @@ function initPage(){
 }
 
 function initMap(){
+  var center = null;
+  if(userPosition){
+    center = userPosition;
+  } else {
+    center = new google.maps.LatLng(38.898013, -77.036539);
+  }
+
   var mapOptions = {    
-    center: new google.maps.LatLng(38.898013, -77.036539),
-    zoom: 9 }; 
+    center: center,
+    zoom: 8 }; 
   map = new google.maps.Map(
     document.getElementById("locationMap"),
     mapOptions); 
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(38.898013, -77.036539),
+
+  addMarker(38.885492, -77.097200, "Arlington, VA"); 
+  addMarker(38.916833, -77.226124, "McLean, VA"); 
+  addMarker(38.998082, -76.910128, "Greenbelt, MD"); 
+}
+
+function addMarker(lat, lng, title) {
+  var mark = new google.maps.Marker({
+    position: new google.maps.LatLng(lat, lng),
     map: map,
-    title: "Our Locations"
-    });
+    title: title
+  });
 }
 
 function showSection(name){
@@ -47,9 +61,10 @@ function showSection(name){
 }
 
 function setLocation(position) {
-  console.log("Longitude: " + position.coords.longitude);
   console.log("Latitude: " + position.coords.latitude);
+  console.log("Longitude: " + position.coords.longitude);
   userPosition = position;
+  
 }
 
 function fail() {
