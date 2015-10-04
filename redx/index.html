@@ -16,7 +16,6 @@
 	<![endif]-->
 	
     <script type="text/javascript" src="scripts/jquery-1.6.1.min.js"></script>
-    <script type="text/javascript" src="scripts/redx.js"></script>
     <script type="text/javascript" src="jquery.nivo.slider.pack.js"></script>
     <script type="text/javascript">
     $(window).load(function() {
@@ -85,7 +84,7 @@
 	
   <section id="home_section"><!-- BEGIN SECTION MAIN CONTENT -->
 		<div class="container"><br><br>
-			<section id="intro">
+			<section class="intro">
       <hgroup>
       <h1>RedX is a highly-motivated team of Web developers!</h1>
 <h2>Our theme is Black &amp; White with a hint of Red.</h2>
@@ -126,7 +125,7 @@
 </section><!-- END SECTION MAIN CONTENT -->
 <section id="about_section" style="display:none"><!-- BEGIN SECTION ABOUT CONTENT -->
 		<div class="container"><br><br>
-			<section id="intro">
+			<section class="intro">
       <hgroup>
       <h1>About Redx</h1>
       </hgroup>
@@ -147,7 +146,7 @@
 </section><!-- END SECTION ABOUT CONTENT -->
 <section id="locations_section" style="display:none"><!-- BEGIN SECTION LOCATIONS CONTENT -->
 		<div class="container"><br><br>
-			<section id="intro">
+			<section class="intro">
       <hgroup>
       <h1>Our Locations</h1>
       </hgroup>
@@ -179,7 +178,7 @@
 </section><!-- END SECTION LOCATIONS CONTENT -->
 <section id="media_section" style="display:none"><!-- BEGIN SECTION MEDIA CONTENT -->
 		<div class="container"><br><br>
-			<section id="intro">
+			<section class="intro">
       <hgroup>
       <h1>Media</h1>
       </hgroup>
@@ -199,7 +198,7 @@
 </section><!-- END SECTION MEDIA CONTENT -->
 <section id="contact_section" style="display:none"><!-- BEGIN SECTION CONTACT CONTENT -->
 		<div class="container"><br><br>
-			<section id="intro">
+			<section class="intro">
       <hgroup>
       <h1>Reach out and Contact Redx</span></h1>
       </hgroup>
@@ -252,55 +251,47 @@
 			<div class="box fifth">
 				<h3> Links</h3>
 				<ul>
-
 					<li><a href="#">Smashing Magazine</a></li>
 					<li><a href="#">Nivo Slider</a></li>
 					<li><a href="#">FreeHtml5Templates</a></li>
 					<li><a href="#">The Gekko Studio</a></li>
 					<li><a href="#">Mighty Social Icons</a></li>
 					<li><a href="#">CSS-Tricks</a></li>
-
 				</ul>
 			</div>
-		
-<div class="box fifth">
-				<h3>Contact Us</h3>
-				<form id="contact" method="post" action="">
-<fieldset>    
+            <div class="box fifth">
+	          <h3>Contact Us</h3>
+	          <form id="contact" method="post" action="">
+              <fieldset>
  
-  <p>
-  <label for="name">Name</label>
-  <input type="text" name="name">
-  </p>
-  <p>
+              <p>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+              </p>
+              <p>
     
-    <label for="email">E-mail</label>
-    <input type="email" name="email">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email">
     
     
-    <label for="message">Message</label>
-    <textarea name="message"></textarea>
+                <label for="message">Message</label>
+                <textarea name="message" id="message"></textarea>
     
-    <input type="submit" name="submit" id="submit" value="Send Message" />
-  </p>
-</fieldset>
-</form>
-			</div>
-			
-			
-			<div class="box copyright">
-				
-                <h6> Copyright &copy; 2015 <br>All Rights Reserved</h6>
-</div>
-			
-			
-		</div>
-		
-	
+                <input type="submit" name="submit" id="submit" value="Send Message" />
+              </p>
+            </fieldset>
+            </form>
+          </div>
+          <div class="box copyright">
+            <h6> Copyright &copy; 2015 <br>All Rights Reserved</h6>
+          </div>
+        </div>
 	</footer><!-- END FOOTER -->
-<!-- Free template distributed by http://freehtml5templates.com -->	
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADatCl5zT7uN7Tl2ybPHwbNEVPHhOxZ8A&callback=initMap">
-    </script>
+    <!-- Free template distributed by http://freehtml5templates.com -->
+    <!-- developer google map api -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADatCl5zT7uN7Tl2ybPHwbNEVPHhOxZ8A&callback=initMap">
+    </script>-->
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="scripts/redx.js"></script>
 </body>
 </html>

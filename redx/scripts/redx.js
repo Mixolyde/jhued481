@@ -13,22 +13,22 @@ function initPage(){
     document.getElementById("locations_section"),
     document.getElementById("media_section"),
     document.getElementById("contact_section"),
-    ];
+  ];
 
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        setLocation, fail, {timeout:10000}); 
-    } else {
-      fail();
-    }
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      setLocation, geoLoadFail, {timeout:10000});
+  } else {
+    geoLoadFail();
+  }
+
+  initMap();
 }
 
 function initMap(){
-  var center = null;
+  var center = new google.maps.LatLng(38.898013, -77.036539);
   if(userPosition){
     center = userPosition;
-  } else {
-    center = new google.maps.LatLng(38.898013, -77.036539);
   }
 
   console.log("Center position: " + center);
@@ -69,7 +69,7 @@ function setLocation(position) {
   
 }
 
-function fail() {
+function geoLoadFail() {
   console.log("Geolocation information not available or not authorized.");
   userPosition = null;
 } 

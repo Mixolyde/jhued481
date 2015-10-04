@@ -190,7 +190,7 @@ a:hover, a:active, a:focus {
 .clear { clear:both; }
 	
 	
-#intro {
+.intro {
 	width: 980px;
 	position: relative;
 	float: left;
