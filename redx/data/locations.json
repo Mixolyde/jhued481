@@ -1,0 +1,22 @@
+{
+  "locations": [
+    {
+      "address": "3200 Wilson Blvd, Arlington, VA 22201",
+      "title": "Arlington, VA",
+      "lat": 38.885492,
+      "lng": -77.097200
+    },
+    {
+      "address": "8101 Fletcher St, McLean, VA 22102",
+      "title": "McLean, VA",
+      "lat": 38.916833,
+      "lng": -77.226124
+    },
+    {
+      "address": "6040 Greenbelt Rd, Greenbelt, MD 20770",
+      "title": "Greenbelt, MD",
+      "lat": 38.998082,
+      "lng": -76.910128
+    }
+  ]
+}
