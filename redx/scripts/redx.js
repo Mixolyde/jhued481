@@ -4,26 +4,7 @@
 var sections;
 var userPosition;
 var map;
-
-//init globals
-function initPage(){
-  sections = [
-    document.getElementById("home_section"),
-    document.getElementById("about_section"),
-    document.getElementById("locations_section"),
-    document.getElementById("media_section"),
-    document.getElementById("contact_section"),
-  ];
-
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      setLocation, geoLoadFail, {timeout:10000});
-  } else {
-    geoLoadFail();
-  }
-
-  initMap();
-}
+var mapLoaded = false;
 
 function initMap(){
   var center = new google.maps.LatLng(38.898013, -77.036539);
@@ -33,16 +14,19 @@ function initMap(){
 
   console.log("Center position: " + center);
 
-  var mapOptions = {    
+  var mapOptions = {
     center: center,
-    zoom: 8 }; 
-  map = new google.maps.Map(
-    document.getElementById("locationMap"),
-    mapOptions); 
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
 
-  addMarker(38.885492, -77.097200, "Arlington, VA"); 
-  addMarker(38.916833, -77.226124, "McLean, VA"); 
-  addMarker(38.998082, -76.910128, "Greenbelt, MD"); 
+  map = new google.maps.Map(
+      document.getElementById("locationMap"),
+      mapOptions);
+
+  addMarker(38.885492, -77.097200, "Arlington, VA");
+  addMarker(38.916833, -77.226124, "McLean, VA");
+  addMarker(38.998082, -76.910128, "Greenbelt, MD");
 }
 
 function addMarker(lat, lng, title) {
@@ -60,16 +44,42 @@ function showSection(name){
       item.style.display = "";
     }
   });
+
+  if (name == "locations" && !mapLoaded){
+    initMap();
+    google.maps.event.trigger(map, "resize");
+    mapLoaded = true;
+  }
 }
 
 function setLocation(position) {
-  console.log("Latitude: " + position.coords.latitude);
-  console.log("Longitude: " + position.coords.longitude);
-  userPosition = position;
+  console.log("Geolocation Latitude: " + position.coords.latitude);
+  console.log("Geolocation Longitude: " + position.coords.longitude);
+  userPosition = new google.maps.LatLng(position.coords.latitude,
+      position.coords.longitude);
   
 }
 
 function geoLoadFail() {
   console.log("Geolocation information not available or not authorized.");
   userPosition = null;
-} 
+}
+
+//init globals
+function initPage(){
+  sections = [
+    document.getElementById("home_section"),
+    document.getElementById("about_section"),
+    document.getElementById("locations_section"),
+    document.getElementById("media_section"),
+    document.getElementById("contact_section")
+  ];
+
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        setLocation, geoLoadFail, {timeout:10000});
+  } else {
+    geoLoadFail();
+  }
+}
+
