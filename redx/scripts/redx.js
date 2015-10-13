@@ -14,58 +14,30 @@ function addMarker(lat, lng, title) {
   });
 }
 
-function showLocationInfo(locations){
-  var index;
-  var newNumberListItem;
-  var numberListValue;
-  //get data from parsed json data
-  var locationCount = locations.length;
-  console.log("Received " + locationCount + " locations from json");
+function loadData(dataUrl, rootElement, target){
+  $.ajax({
+    url: dataUrl,
+    type: 'GET',
+    dataType: 'json'
+  }).done(function(data) {
+    $.each(data[rootElement], function (index) {
+      target.append("<li>" + data[rootElement][index].address + "</li>");
 
-  var officeList = document.getElementById("office_list");
-
-  for(index = 0; index < locationCount; index++){
-    //create new li element
-    newNumberListItem = document.createElement("li");
-
-    //create new text node
-    numberListValue = document.createTextNode(locations[index].address);
-
-    //add text node to li element
-    newNumberListItem.appendChild(numberListValue);
-
-    //add new list element built in previous steps to unordered list
-    //called numberList
-    officeList.appendChild(newNumberListItem);
-
-    addMarker(
-        locations[index].lat,
-        locations[index].lng,
-        locations[index].title
-    );
-  }
-
-}
-
-function loadData(dataUrl) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', dataUrl);
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-      if ((xhr.status >= 200 && xhr.status < 300) ||
-          xhr.status === 304) {
-        var jsonData = xhr.responseText;
-
-        //parse the campaign data
-        var locationData = JSON.parse(jsonData).locations;
-        showLocationInfo(locationData);
-      } else {
-        console.log(xhr.statusText);
-      }
+      addMarker(
+          data[rootElement][index].lat,
+          data[rootElement][index].lng,
+          data[rootElement][index].title
+      );
+    });
+  }).fail(function (jqHXR, textStatus) {
+    if (textStatus === 'parsererror') {
+      console.log("Requested JSON parse failed.");
+    } else if (textStatus === 'abort') {
+      console.log("Ajax request was aborted");
+    } else {
+      console.log('Error status code:' + jxHXR.status);
     }
-  };
-  xhr.send();
+  });
 }
 
 function initMap(){
@@ -84,18 +56,18 @@ function initMap(){
   };
 
   map = new google.maps.Map(
-      document.getElementById("locationMap"),
+      $("#locationMap").get(0),
       mapOptions);
 
-  loadData('data/locations.json');
+  loadData('data/locations.json', 'locations', $("#office_list"));
 
 }
 
 function showSection(name){
-  sections.forEach(function (item, index, array) {
-    item.style.display = "none";
-    if(item.id.indexOf(name) == 0){
-      item.style.display = "";
+  sections.each(function(index ){
+    $(this).hide();
+    if($(this).attr('id').indexOf(name) == 0){
+      $(this).show();
     }
   });
 
@@ -107,8 +79,7 @@ function showSection(name){
 }
 
 function setLocation(position) {
-  console.log("Geolocation Latitude: " + position.coords.latitude);
-  console.log("Geolocation Longitude: " + position.coords.longitude);
+  console.log("Geolocation Lat/Long: " + position.coords.latitude + ":" + position.coords.longitude);
   userPosition = new google.maps.LatLng(position.coords.latitude,
       position.coords.longitude);
   
@@ -121,13 +92,7 @@ function geoLoadFail() {
 
 //init globals
 function initPage(){
-  sections = [
-    document.getElementById("home_section"),
-    document.getElementById("about_section"),
-    document.getElementById("locations_section"),
-    document.getElementById("media_section"),
-    document.getElementById("contact_section")
-  ];
+  sections =  $("section[id$='_section']");
 
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
