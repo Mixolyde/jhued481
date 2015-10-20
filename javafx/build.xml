@@ -7,7 +7,7 @@
     <property name="dir.workspace" value="C:/Users/Brian/workspace"/>
     <property name="dir.jarfile" value="C:/Users/Brian/Documents/GitHub/jhued481/jars"/>
     <target name="create_run_jar">
-        <jar destfile="${dir.jarfile}/HM7_runnable.jar">
+        <jar destfile="${dir.jarfile}/HW7_runnable.jar">
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
                 <attribute name="Rsrc-Main-Class" value="application.Main"/>
