@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -29,12 +30,12 @@
                </children>
             </VBox>
             <Label text="Print Quality:" GridPane.rowIndex="2" />
-            <ComboBox fx:id="qualityBox" prefWidth="150.0" visibleRowCount="3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <ComboBox fx:id="qualityBox" onAction="#handleQualityComboAction" prefWidth="150.0" visibleRowCount="3" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </ComboBox>
-            <CheckBox fx:id="printToFileCheckBox" mnemonicParsing="false" text="Print to File" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <CheckBox fx:id="printToFileCheckBox" mnemonicParsing="false" onAction="#handlePrintToFileCheckBoxAction" text="Print to File" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -62,17 +63,20 @@
             <Label text="Printer: MyPrinter" />
             <FlowPane orientation="VERTICAL" prefHeight="162.0" prefWidth="183.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <RadioButton fx:id="selectionButton" mnemonicParsing="false" text="Selection">
+                  <RadioButton fx:id="selectionButton" mnemonicParsing="false" onAction="#handleSelectionRadioButtonAction" selected="true" text="Selection">
+                     <FlowPane.margin>
+                        <Insets top="30.0" />
+                     </FlowPane.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="radioGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="allButton" mnemonicParsing="false" onAction="#handleAllRadioButtonAction" text="All" toggleGroup="$radioGroup">
                      <FlowPane.margin>
                         <Insets top="30.0" />
                      </FlowPane.margin>
                   </RadioButton>
-                  <RadioButton fx:id="allButton" mnemonicParsing="false" text="All">
-                     <FlowPane.margin>
-                        <Insets top="30.0" />
-                     </FlowPane.margin>
-                  </RadioButton>
-                  <RadioButton fx:id="appletButton" mnemonicParsing="false" text="Applet">
+                  <RadioButton fx:id="appletButton" mnemonicParsing="false" onAction="#handleAppletRadioButtonAction" text="Applet" toggleGroup="$radioGroup">
                      <FlowPane.margin>
                         <Insets top="30.0" />
                      </FlowPane.margin>
@@ -91,22 +95,22 @@
       </GridPane>
       <VBox maxHeight="1.7976931348623157E308" prefHeight="194.0" prefWidth="97.0">
          <children>
-            <Button fx:id="okButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" text="OK" textAlignment="CENTER">
+            <Button fx:id="okButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleOkButtonAction" prefHeight="22.0" prefWidth="52.0" text="OK" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" text="Cancel">
+            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="22.0" prefWidth="52.0" text="Cancel">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="setupButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="19.0" prefWidth="52.0" text="Setup">
+            <Button fx:id="setupButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSetupButtonAction" prefHeight="19.0" prefWidth="52.0" text="Setup">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="helpButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="7.0" prefWidth="52.0" text="Help">
+            <Button fx:id="helpButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleHelpButtonAction" prefHeight="7.0" prefWidth="52.0" text="Help">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>

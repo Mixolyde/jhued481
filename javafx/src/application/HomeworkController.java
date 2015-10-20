@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 
 public class HomeworkController implements Initializable {
 	public CheckBox imageCheckBox;
@@ -26,6 +27,8 @@ public class HomeworkController implements Initializable {
 	public Button cancelButton;
 	public Button setupButton;
 	public Button helpButton;
+	
+	public ToggleGroup radioGroup;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources){
@@ -49,5 +52,41 @@ public class HomeworkController implements Initializable {
 	
 	public void handleCodeCheckBoxAction(ActionEvent event){
 		System.out.println("You clicked the Code checkbox!");
+	}
+	
+	public void handleSelectionRadioButtonAction(ActionEvent event){
+		System.out.println("You clicked the Selection RadioButton!");
+	}
+	
+	public void handleAllRadioButtonAction(ActionEvent event){
+		System.out.println("You clicked the All RadioButton!");
+	}
+	
+	public void handleAppletRadioButtonAction(ActionEvent event){
+		System.out.println("You clicked the Applet RadioButton!");
+	}
+	
+	public void handleQualityComboAction(ActionEvent event){
+		System.out.println("You selected " + qualityBox.getValue() + " from the quality combo box.");
+	}
+	
+	public void handleOkButtonAction(ActionEvent event){
+		System.out.println("You clicked the Ok Button!");
+	}
+	
+	public void handleCancelButtonAction(ActionEvent event){
+		System.out.println("You clicked the Cancel Button!");
+	}
+	
+	public void handleHelpButtonAction(ActionEvent event){
+		System.out.println("You clicked the Help Button!");
+	}
+	
+	public void handleSetupButtonAction(ActionEvent event){
+		System.out.println("You clicked the Setup Button!");
+	}
+	
+	public void handlePrintToFileCheckBoxAction(ActionEvent event){
+		System.out.println("You clicked the Print to File CheckBox!");
 	}
 }
