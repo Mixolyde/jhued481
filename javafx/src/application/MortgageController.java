@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class MortgateController implements Initializable {
+public class MortgageController implements Initializable {
 	public TextField loanAmountField;
 	public ComboBox<Double> interestBox;
 	public ComboBox<Integer> yearBox;
