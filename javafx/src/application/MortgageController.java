@@ -23,11 +23,11 @@ public class MortgageController implements Initializable {
 	public TextField totalField;
 	public TableView<MortgagePayment> paymentTable;
 	public TableColumn<MortgagePayment, String> monthNoCol;
-	public TableColumn<MortgagePayment, Double> paymentCol;
-	public TableColumn<MortgagePayment, Double> principlePaidCol;
-	public TableColumn<MortgagePayment, Double> interestPaidCol;
-	public TableColumn<MortgagePayment, Double> totalInterestPaidCol;
-	public TableColumn<MortgagePayment, Double> remainingValueCol;
+	public TableColumn<MortgagePayment, String> paymentCol;
+	public TableColumn<MortgagePayment, String> principlePaidCol;
+	public TableColumn<MortgagePayment, String> interestPaidCol;
+	public TableColumn<MortgagePayment, String> totalInterestPaidCol;
+	public TableColumn<MortgagePayment, String> remainingValueCol;
 	
 	private ObservableList<MortgagePayment> payments;
 	
@@ -53,23 +53,23 @@ public class MortgageController implements Initializable {
 		);
 		
 		paymentCol.setCellValueFactory(
-			new PropertyValueFactory<MortgagePayment,Double>("payment")
+			new PropertyValueFactory<MortgagePayment,String>("payment")
 		);
 		
 		principlePaidCol.setCellValueFactory(
-			new PropertyValueFactory<MortgagePayment,Double>("principlePaid")
+			new PropertyValueFactory<MortgagePayment,String>("principlePaid")
 		);
 		
 		interestPaidCol.setCellValueFactory(
-			new PropertyValueFactory<MortgagePayment,Double>("interestPaid")
+			new PropertyValueFactory<MortgagePayment,String>("interestPaid")
 		);
 		
 		totalInterestPaidCol.setCellValueFactory(
-			new PropertyValueFactory<MortgagePayment,Double>("totalInterestPaid")
+			new PropertyValueFactory<MortgagePayment,String>("totalInterestPaid")
 		);
 		
 		remainingValueCol.setCellValueFactory(
-			new PropertyValueFactory<MortgagePayment,Double>("remainingValue")
+			new PropertyValueFactory<MortgagePayment,String>("remainingValue")
 		);
 		
 		payments = FXCollections.observableArrayList();
@@ -79,13 +79,14 @@ public class MortgageController implements Initializable {
 	
 	public void handleCalculateAction(ActionEvent event){
 		System.out.println("You clicked the Calculate Button!");
-		double interestMonthly = interestBox.getValue() / 12 / 100;
+		double interestMonthly = (interestBox.getValue() / 12) / 100;
 		System.out.println("Monthly interest percentage: " + interestMonthly);
 		
 		int numberMonths = 12 * yearBox.getValue();
 		int index = 1;
 		
-		payments = FXCollections.observableArrayList();
+		payments.clear();
+		
 		double totalPaid = 0;
 		double totalInterestPaid = 0;
 		
@@ -101,9 +102,9 @@ public class MortgageController implements Initializable {
 			System.out.println("Monthly Payment: " + monthlyPayment);
 			
 			for (index = 1; index < numberMonths; index++){
-				double interestPaid = remainingBalance * interestMonthly;
+				double interestPaid = Double.parseDouble(df.format(remainingBalance * interestMonthly));
 				double principlePaid = monthlyPayment - interestPaid;
-				remainingBalance = remainingBalance - monthlyPayment;
+				remainingBalance = remainingBalance - principlePaid;
 				totalInterestPaid += interestPaid;
 				totalPaid += monthlyPayment;
 				payments.add(new MortgagePayment("Month " + index, monthlyPayment,
@@ -112,12 +113,24 @@ public class MortgageController implements Initializable {
 				
 			}
 			
+			double interestPaid = remainingBalance * interestMonthly;
+			double principlePaid = monthlyPayment - interestPaid;
+			remainingBalance = remainingBalance - monthlyPayment;
+			totalInterestPaid += interestPaid;
+			totalPaid += monthlyPayment;
+			
+			payments.add(new MortgagePayment("Month " + index, interestPaid + principlePaid,
+					principlePaid, interestPaid,
+					totalInterestPaid, 0));
+			
+			
 			totalField.setText(df.format(totalPaid));
 			
 		} catch(Exception e){
 			System.out.println("Exception thrown while calculating: " + e.getMessage());
 			e.printStackTrace();
 			totalField.setText("");
+			payments.clear();
 			
 		}
 		

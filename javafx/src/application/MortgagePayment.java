@@ -1,5 +1,7 @@
 package application;
 
+import java.text.DecimalFormat;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -10,6 +12,8 @@ public class MortgagePayment {
 	private final SimpleDoubleProperty interestPaid;
 	private final SimpleDoubleProperty totalInterestPaid;
 	private final SimpleDoubleProperty remainingValue;
+	
+	DecimalFormat df = new DecimalFormat("#.00");
 	
 	public MortgagePayment(String monthNo, double payment, double principlePaid,
 			double interestPaid, double totalInterestPaid, double remainingValue){
@@ -25,24 +29,24 @@ public class MortgagePayment {
 		return monthNo.get();
 	}
 	
-	public double getPayment(){
-		return payment.get();
+	public String getPayment(){
+		return df.format(payment.get());
 	}
 	
-	public double getPrinciplePaid(){
-		return principlePaid.get();
+	public String getPrinciplePaid(){
+		return df.format(principlePaid.get());
 	}
 	
-	public double getInterestPaid(){
-		return interestPaid.get();
+	public String getInterestPaid(){
+		return df.format(interestPaid.get());
 	}
 	
-	public double getTotalInterestPaid(){
-		return totalInterestPaid.get();
+	public String getTotalInterestPaid(){
+		return df.format(totalInterestPaid.get());
 	}
 	
-	public double getRemainingValue(){
-		return remainingValue.get();
+	public String getRemainingValue(){
+		return df.format(remainingValue.get());
 	}
 
 }
