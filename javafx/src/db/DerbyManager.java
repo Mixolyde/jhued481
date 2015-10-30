@@ -21,6 +21,12 @@ public class DerbyManager {
 			+ "ISCUSTOMER BOOLEAN NOT NULL DEFAULT TRUE"
 			+ ")";
 	
+	static String CREATE_MERCH_TABLE = "CREATE TABLE Merchandise "
+			+ "(NAME VARCHAR (100) NOT NULL, "
+			+ "PRICE MONEY, "
+			+ "DESCRIPTION VARCHAR(255)"
+			+ ")";
+	
 	public DerbyManager(){
 		
 		//initialize data base
@@ -53,8 +59,8 @@ public class DerbyManager {
 	}
 	
 	private void dropTables() throws Exception {
-		dropTable("Customer");
-		dropTable("Person");	
+		dropTable("Person");
+		dropTable("Merchandise");	
 	}
 	
 	public void dropTable( String table ) 
@@ -72,6 +78,7 @@ public class DerbyManager {
 	private void createTables() throws Exception {
 	    Statement stmt = conn.createStatement();
 	    stmt.executeUpdate(CREATE_PERSON_TABLE);
+	    stmt.executeUpdate(CREATE_MERCH_TABLE);
 		
 	}
 	
