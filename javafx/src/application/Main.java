@@ -16,6 +16,7 @@ public class Main extends Application {
 			Scene scene = new Scene(retailView);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Retail System Management");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
