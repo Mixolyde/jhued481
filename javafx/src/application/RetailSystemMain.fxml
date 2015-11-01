@@ -17,20 +17,20 @@
             <items>
                   <Menu mnemonicParsing="false" text="Customer">
                     <items>
-                      <MenuItem fx:id="customerAddMenuItem" mnemonicParsing="false" text="Add New" />
-                    <MenuItem fx:id="customerListMenuItem" mnemonicParsing="false" text="List All" />
+                      <MenuItem fx:id="customerAddMenuItem" mnemonicParsing="false" onAction="#handleCustomerAddAction" text="Add New" />
+                    <MenuItem fx:id="customerListMenuItem" mnemonicParsing="false" onAction="#handleCustomerListAction" text="List All" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Employee">
                     <items>
-                      <MenuItem fx:id="employeeAddMenuItem" mnemonicParsing="false" text="Add New" />
-                        <MenuItem fx:id="employeeListMenuItem" mnemonicParsing="false" text="List All" />
+                      <MenuItem fx:id="employeeAddMenuItem" mnemonicParsing="false" onAction="#handleEmployeeAddAction" text="Add New" />
+                        <MenuItem fx:id="employeeListMenuItem" mnemonicParsing="false" onAction="#handleEmployeeListAction" text="List All" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Merchandise">
                     <items>
-                      <MenuItem fx:id="merchandiseAddMenuItem" mnemonicParsing="false" text="Add New" />
-                        <MenuItem fx:id="merchandiseListMenuItem" mnemonicParsing="false" text="List All" />
+                      <MenuItem fx:id="merchandiseAddMenuItem" mnemonicParsing="false" onAction="#handleMerchandiseAddAction" text="Add New" />
+                        <MenuItem fx:id="merchandiseListMenuItem" mnemonicParsing="false" onAction="#handleMerchandiseListAction" text="List All" />
                     </items>
                   </Menu>
             </items>
