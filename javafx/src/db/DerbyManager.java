@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 
 public class DerbyManager {
 	static Connection conn;
@@ -23,7 +24,7 @@ public class DerbyManager {
 	
 	static String CREATE_MERCH_TABLE = "CREATE TABLE Merchandise "
 			+ "(NAME VARCHAR (100) NOT NULL, "
-			+ "PRICE MONEY, "
+			+ "PRICE REAL NOT NULL, "
 			+ "DESCRIPTION VARCHAR(255)"
 			+ ")";
 	
@@ -40,13 +41,7 @@ public class DerbyManager {
 	
 		    conn = DriverManager.getConnection(connectionURL);
 	
-		    dropTables();
-		    
-		    createTables();
-	
-		    insertTestData();
-		    
-		    printData();
+
 	
 
 	    } catch (Exception e){
@@ -112,6 +107,22 @@ public class DerbyManager {
 		}
 	}
 	
+	public void insertMerchandise(Merchandise merch) throws Exception {
+	    PreparedStatement psInsert = conn
+		        .prepareStatement("insert into Merchandise values (?,?,?)");
+	    
+	    //format price
+		DecimalFormat df = new DecimalFormat("#.00");
+		float formattedPrice = Float.parseFloat(df.format(merch.price));
+	    
+	
+	    psInsert.setString(1, merch.name);
+	    psInsert.setFloat(2, formattedPrice);
+	    psInsert.setString(3, merch.description);
+
+	    psInsert.executeUpdate();		
+	}
+	
 	private void insertTestData() throws Exception {
 		Person person = new Person();
 		person.personType = PersonType.Customer;
@@ -136,6 +147,20 @@ public class DerbyManager {
 		person.gender = false;
 		
 		insertPerson(person);
+		
+		Merchandise merch = new Merchandise();
+		merch.name = "Product #1";
+		merch.price = 0.0f;
+		merch.description = "Let's just say, you don't pay with money.";
+		
+		insertMerchandise(merch);
+		
+		merch = new Merchandise();
+		merch.name = "Product #2";
+		merch.price = 0.987654f;
+		merch.description = "High precision value.";
+		
+		insertMerchandise(merch);
 	}
 	
 	private void printData() throws Exception {
@@ -173,11 +198,31 @@ public class DerbyManager {
 	      		);
 	    }
 	    rs.close();	
+	    
+	    rs = stmt2.executeQuery("select * from Merchandise");
+	    System.out.println("Merch present in Merchandise Table\n\n");
+	    num = 0;
+
+	    while (rs.next()) {
+	      System.out.println(++num + ": Name: " + rs.getString(1) + "\n   "
+	      		+ "Price: " + rs.getString(2) + "\n   "
+	      		+ "Description: " + rs.getString(3) + "\n"
+	      		);
+	    }
+	    rs.close();	
 	}
 	
 	public static void main(String[] args) throws Exception {
 		
 		DerbyManager manager = new DerbyManager();
+		
+	    manager.dropTables();
+	    
+	    manager.createTables();
+
+	    manager.insertTestData();
+	    
+	    manager.printData();
 		
 		System.exit(0);
 	}

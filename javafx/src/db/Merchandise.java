@@ -2,7 +2,7 @@ package db;
 
 public class Merchandise {
 	public String name;
-	public double price;
+	public float price;
 	public String description;
 
 }
