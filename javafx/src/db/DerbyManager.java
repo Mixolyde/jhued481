@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 public class DerbyManager {
 	static Connection conn;
 	
@@ -40,6 +42,8 @@ public class DerbyManager {
 		    Class.forName(driver);
 	
 		    conn = DriverManager.getConnection(connectionURL);
+		    
+		    createTables();
 	
 
 	
@@ -53,6 +57,7 @@ public class DerbyManager {
 		
 	}
 	
+	@Ignore
 	private void dropTables() throws Exception {
 		dropTable("Person");
 		dropTable("Merchandise");	
@@ -72,8 +77,16 @@ public class DerbyManager {
 	
 	private void createTables() throws Exception {
 	    Statement stmt = conn.createStatement();
-	    stmt.executeUpdate(CREATE_PERSON_TABLE);
-	    stmt.executeUpdate(CREATE_MERCH_TABLE);
+	    try{
+	    	stmt.executeUpdate(CREATE_PERSON_TABLE);
+	    	stmt.executeUpdate(CREATE_MERCH_TABLE);
+	    } catch( SQLException e ) {
+	        if( e.getSQLState().equals("X0Y32") ) {
+	        	//tables already exist
+	            return; // That's OK
+	        }
+	        throw e;
+	    }
 		
 	}
 	
@@ -216,9 +229,9 @@ public class DerbyManager {
 		
 		DerbyManager manager = new DerbyManager();
 		
-	    manager.dropTables();
+	    //manager.dropTables();
 	    
-	    manager.createTables();
+	    //manager.createTables();
 
 	    manager.insertTestData();
 	    
