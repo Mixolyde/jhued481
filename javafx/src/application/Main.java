@@ -1,5 +1,6 @@
 package application;
 	
+import db.DerbyManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,10 +12,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//Parent homeworkView = FXMLLoader.load(getClass().getResource("Homework.fxml"));
-			//Scene scene = new Scene(homeworkView);
-			Parent mortgageView = FXMLLoader.load(getClass().getResource("Mortgage.fxml"));
-			Scene scene = new Scene(mortgageView);
+			Parent retailView = FXMLLoader.load(getClass().getResource("RetailSystemMain.fxml"));
+			Scene scene = new Scene(retailView);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -23,7 +22,8 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		DerbyManager.getInstance().printData();
 		launch(args);
 	}
 }

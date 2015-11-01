@@ -11,6 +11,8 @@ import java.text.DecimalFormat;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
 public class DerbyManager {
+	private static DerbyManager _instance = null;
+	
 	static Connection conn;
 	
 	static String CREATE_PERSON_TABLE = "CREATE TABLE Person "
@@ -30,7 +32,7 @@ public class DerbyManager {
 			+ "DESCRIPTION VARCHAR(255)"
 			+ ")";
 	
-	public DerbyManager(){
+	private DerbyManager(){
 		
 		//initialize data base
 		String driver = "org.apache.derby.jdbc.EmbeddedDriver";
@@ -54,6 +56,15 @@ public class DerbyManager {
 	    	e.printStackTrace();
 	    	
 	    } 
+		
+	}
+	
+	public static DerbyManager getInstance(){
+		if(_instance == null){
+			_instance = new DerbyManager();
+		}
+		
+		return _instance;
 		
 	}
 	
@@ -176,7 +187,7 @@ public class DerbyManager {
 		insertMerchandise(merch);
 	}
 	
-	private void printData() throws Exception {
+	public void printData() throws Exception {
 	    Statement stmt2 = conn.createStatement();
 	    ResultSet rs = stmt2.executeQuery("select * from Person where ISCUSTOMER = true");
 	    System.out.println("Customers present in Person Table\n\n");
