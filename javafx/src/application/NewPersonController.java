@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 public class NewPersonController implements Initializable {
 	public Button okButton;
@@ -58,5 +59,9 @@ public class NewPersonController implements Initializable {
 	
 	public void handleCancelButtonAction(ActionEvent event){
 		System.out.println("You clicked the Cancel Button!");
+	    // get a handle to the stage
+	    Stage stage = (Stage) cancelButton.getScene().getWindow();
+	    // do what you have to do
+	    stage.close();
 	}
 }
