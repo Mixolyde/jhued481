@@ -131,12 +131,12 @@ public class DerbyManager {
 	    
 	    //format price
 		DecimalFormat df = new DecimalFormat("#.00");
-		float formattedPrice = Float.parseFloat(df.format(merch.price));
+		float formattedPrice = Float.parseFloat(df.format(merch.price.get()));
 	    
 	
-	    psInsert.setString(1, merch.name);
+	    psInsert.setString(1, merch.getName());
 	    psInsert.setFloat(2, formattedPrice);
-	    psInsert.setString(3, merch.description);
+	    psInsert.setString(3, merch.getDescription());
 
 	    psInsert.executeUpdate();		
 	}
@@ -182,9 +182,9 @@ public class DerbyManager {
 	    
 	    while (rs.next()) {
 	    	Merchandise person = new Merchandise();
-			person.name = rs.getString(1);
-			person.price = rs.getFloat(2);
-			person.description = rs.getString(3);
+			person.name.set(rs.getString(1));
+			person.price.set(rs.getFloat(2));
+			person.description.set(rs.getString(3));
 	        
 			merchandises.add(person);
 	    }
@@ -221,16 +221,16 @@ public class DerbyManager {
 		insertPerson(person);
 		
 		Merchandise merch = new Merchandise();
-		merch.name = "Product #1";
-		merch.price = 0.0f;
-		merch.description = "Let's just say, you don't pay with money.";
+		merch.name.set("Product #1");
+		merch.price.set(0.0f);
+		merch.description.set("Let's just say, you don't pay with money.");
 		
 		insertMerchandise(merch);
 		
 		merch = new Merchandise();
-		merch.name = "Product #2";
-		merch.price = 0.987654f;
-		merch.description = "High precision value.";
+		merch.name.set("Product #2");
+		merch.price.set(0.987654f);
+		merch.description.set("High precision value.");
 		
 		insertMerchandise(merch);
 	}

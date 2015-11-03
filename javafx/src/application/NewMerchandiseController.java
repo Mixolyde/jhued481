@@ -33,14 +33,14 @@ public class NewMerchandiseController implements Initializable {
 		
 		try{
 			Merchandise merchandise = new Merchandise();
-			merchandise.name = nameField.getText().trim();
+			merchandise.name.set(nameField.getText().trim());
 			float price = Float.parseFloat(priceField.getText().trim());
 			if (price >= 0){
-				merchandise.price = price;
+				merchandise.price.set(price);
 			} else {
 				throw new IllegalArgumentException("Price must be greater than or equal to $0.00");
 			}
-			merchandise.description = descriptionArea.getText().trim();
+			merchandise.description.set(descriptionArea.getText().trim());
 
 			DerbyManager.getInstance().insertMerchandise(merchandise);
 			closeDialog();
