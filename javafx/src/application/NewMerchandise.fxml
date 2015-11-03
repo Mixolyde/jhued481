@@ -11,7 +11,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="okButton" mnemonicParsing="false" onAction="#handleOkButtonAction" text="OK">
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#handleOkButtonAction" text="Submit">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
