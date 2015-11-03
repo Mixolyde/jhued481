@@ -64,17 +64,17 @@ public class NewPersonController implements Initializable {
 		
 		Person person = new Person();
 		person.personType = this.personType;
-		person.firstName = firstNameField.getText().trim();
-		person.lastName = lastNameField.getText().trim();
-		person.address = addressField.getText().trim();
-		person.city = cityField.getText().trim();
-		person.state = stateBox.getSelectionModel().getSelectedItem();
-		person.zip = zipField.getText().trim();
+		person.firstName.set(firstNameField.getText().trim());
+		person.lastName.set(lastNameField.getText().trim());
+		person.address.set(addressField.getText().trim());
+		person.city.set(cityField.getText().trim());
+		person.state.set(stateBox.getSelectionModel().getSelectedItem());
+		person.zip.set(zipField.getText().trim());
 		
 		if(maleButton.isSelected()){
-			person.gender = true;
+			person.gender.set(true);
 		} else {
-			person.gender = false;
+			person.gender.set(false);
 		}
 		
 		try{

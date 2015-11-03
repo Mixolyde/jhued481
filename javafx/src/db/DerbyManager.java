@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
 public class DerbyManager {
@@ -102,33 +104,25 @@ public class DerbyManager {
 	}
 	
 	public void insertPerson(Person person) throws Exception {
+		PreparedStatement psInsert = null;
 		if(person.personType == PersonType.Customer){
-		    PreparedStatement psInsert = conn
+		    psInsert = conn
 			        .prepareStatement("insert into Person values (?,?,?,?,?,?,?,true)");
-		
-		    psInsert.setString(1, person.firstName);
-		    psInsert.setString(2, person.lastName);
-		    psInsert.setString(3, person.address);
-		    psInsert.setString(4, person.city);
-		    psInsert.setString(5, person.state);
-		    psInsert.setString(6, person.zip);
-		    psInsert.setBoolean(7, person.gender);
-	
-		    psInsert.executeUpdate();		
 		} else {
-		    PreparedStatement psInsert = conn
-			        .prepareStatement("insert into Person values (?,?,?,?,?,?,?,false)");
-		
-		    psInsert.setString(1, person.firstName);
-		    psInsert.setString(2, person.lastName);
-		    psInsert.setString(3, person.address);
-		    psInsert.setString(4, person.city);
-		    psInsert.setString(5, person.state);
-		    psInsert.setString(6, person.zip);
-		    psInsert.setBoolean(7, person.gender);
-	
-		    psInsert.executeUpdate();	
+		    psInsert = conn
+			        .prepareStatement("insert into Person values (?,?,?,?,?,?,?,false)");	
 		}
+		
+	    psInsert.setString(1, person.firstName.get());
+	    psInsert.setString(2, person.lastName.get());
+	    psInsert.setString(3, person.address.get());
+	    psInsert.setString(4, person.city.get());
+	    psInsert.setString(5, person.state.get());
+	    psInsert.setString(6, person.zip.get());
+	    psInsert.setBoolean(7, person.gender.get());
+
+	    psInsert.executeUpdate();		
+
 	}
 	
 	public void insertMerchandise(Merchandise merch) throws Exception {
@@ -147,28 +141,82 @@ public class DerbyManager {
 	    psInsert.executeUpdate();		
 	}
 	
+	public ObservableList<Person> getPersons(PersonType personType) throws Exception {
+		ObservableList<Person> persons = FXCollections.observableArrayList();
+		Statement stmt2 = conn.createStatement();
+	    ResultSet rs;
+	    if(personType == PersonType.Customer){
+	    	rs = stmt2.executeQuery("select * from Person where ISCUSTOMER = true");
+	    	System.out.println("Customers present in Person Table\n\n");
+	    } else {
+	    	rs = stmt2.executeQuery("select * from Person where ISCUSTOMER = false");
+	    	System.out.println("Employees present in Person Table\n\n");
+	    }
+	    
+	    while (rs.next()) {
+	    	Person person = new Person();
+			person.personType = personType;
+			person.firstName.set(rs.getString(1));
+			person.lastName.set(rs.getString(2));
+			person.address.set(rs.getString(3));
+			person.city.set(rs.getString(4));
+			person.state.set(rs.getString(5));
+			person.zip.set(rs.getString(6));
+	        person.gender.set(rs.getBoolean(7));
+	        
+	        persons.add(person);
+	    }
+	    rs.close();	
+	    
+	    System.out.println("Returning " + persons.size() + " persons from DB.");
+	    
+	    return persons;
+	}
+	
+	public ObservableList<Merchandise> getMerchandises() throws Exception {
+		ObservableList<Merchandise> merchandises = FXCollections.observableArrayList();
+		Statement stmt2 = conn.createStatement();
+	    ResultSet rs;
+    	rs = stmt2.executeQuery("select * from Merchandise");
+    	System.out.println("Merchandise present in Merchandise Table\n\n");
+	    
+	    while (rs.next()) {
+	    	Merchandise person = new Merchandise();
+			person.name = rs.getString(1);
+			person.price = rs.getFloat(2);
+			person.description = rs.getString(3);
+	        
+			merchandises.add(person);
+	    }
+	    rs.close();	
+	    
+	    System.out.println("Returning " + merchandises.size() + " merchandises from DB.");
+	    
+	    return merchandises;
+	}
+	
 	private void insertTestData() throws Exception {
 		Person person = new Person();
 		person.personType = PersonType.Customer;
-		person.firstName = "Brian";
-		person.lastName = "Grey";
-		person.address = "123 Main St";
-		person.city = "Springfield";
-		person.state = "GA";
-		person.zip = "12345";
-		person.gender = true;
+		person.firstName.set("Brian");
+		person.lastName.set("Grey");
+		person.address.set("123 Main St");
+		person.city.set("Springfield");
+		person.state.set("GA");
+		person.zip.set("12345");
+		person.gender.set(true);
 		
 		insertPerson(person);
 		
 		person = new Person();
 		person.personType = PersonType.Employee;
-		person.firstName = "Lynn";
-		person.lastName = "Grey";
-		person.address = "123 Main St";
-		person.city = "Springfield";
-		person.state = "VA";
-		person.zip = "12345-6789";
-		person.gender = false;
+		person.firstName.set("Lynn");
+		person.lastName.set("Grey");
+		person.address.set("123 Main St");
+		person.city.set("Springfield");
+		person.state.set("GA");
+		person.zip.set("12345");
+		person.gender.set(false);
 		
 		insertPerson(person);
 		
