@@ -1,3 +1,4 @@
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,21 @@
       <div class="results">
 	      <h3>You entered the following data:</h3>
 	      <p>
-	      	<script>printQueryDict();</script>
+        <% 
+        Enumeration<String> names = request.getParameterNames();
+
+        if(!names.hasMoreElements()){
+          out.println("No Parameters detected.<br/>\n");
+
+        } else {
+          while (names.hasMoreElements()) {
+            String name = names.nextElement();
+            out.println(name + "=" + request.getParameter(name) + "<br/>\n");
+          }
+        }
+
+        %>
+        
 	      </p>
       </div>
    </article>
