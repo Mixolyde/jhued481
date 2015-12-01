@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Brian's Flowers - Submit Order</title>
+   <link rel="stylesheet" href="happy.css" />
+   <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+   <script src="happy.js" type="text/javascript"></script>
+</head>
+
+<body onload="initPage()">
+   <div class="container">
+      <header>
+         <h1>
+            Brian's Flowers
+         </h1>
+      </header>
+
+      <nav>
+         <ul>
+            <li><a href="#">Floral Arrangements</a></li>
+            <li><a href="#">Seasonal Bouquets</a></li>
+            <li><a href="#">Live Plants</a></li>
+            <li><a href="#">Shop by Price</a></li>
+         </ul>
+      </nav>
+   </div>
+
+   <article>
+      <h2>Place an Order</h2>
+      <div id="errorText"></div>
+      <form action="parseParameters" method="post" id="orderForm"
+      onSubmit="return customValidate()">
+         <fieldset id="message" class="checks">
+           <legend>Message</legend>
+           <input type="checkbox" id="congratsMsg" name="congratsMsg" value="congratulations">
+           <label for="congratsMsg">Congratulations!</label> 
+           <input type="checkbox" id="birthdayMsg" name="birthdayMsg" value="birthday">
+           <label for="birthdayMsg">Happy Birthday!</label>
+           <input type="checkbox" id="anniversaryMsg" name="anniversaryMsg" value="anniversary">
+           <label for="anniversaryMsg">Happy Anniversary!</label>
+           <input type="checkbox" id="iloveyouMsg" name="iloveyouMsg" value="iloveyou">
+           <label for="iloveyouMsg">I Love You!</label>
+           <input type="checkbox" id="customMsg" name="customMsg" value="custom" 
+           onClick="customClick()">
+           <label for="CustomText">Custom Message:</label>
+           <textarea name="CustomText" id="customTextArea"
+           placeholder="Enter custom message here (max 250 characters)"></textarea>
+         </fieldset>
+         <fieldset id="billingAddress" class="text">
+           <legend>Billing Address</legend>
+           <label for="Billingfirstname">First Name</label>
+           <input type="text" name="Billingfirstname" id="billFName" autofocus="true" required="true">
+           <label for="Billinglastname">Last Name</label> 
+           <input type="text" name="Billinglastname" id="billLName" required="true">
+           <label for="Billingaddress">Street Address</label> 
+           <input type="text" name="Billingaddress" id="billStreet" required="true"> 
+           <label for="Billingcity">City</label> 
+           <input type="text" name="Billingcity" id="billCity" required="true"> 
+           <label for="Billingstate">State</label>
+           <select name="Billingstate" id="billState" required="true">
+             <script>stateOptions();</script>
+           </select>
+           <label for="Billingzip">Zip</label> 
+           <input type="text" name="Billingzip" id="billZip" placeholder="12345-6789"
+           pattern="[0-9]{5}|[0-9]{5}-[0-9]{4}" required="true">
+           <label for="Billingphone">Phone</label> 
+           <input type="text" name="Billingphone" id="billPhone" placeholder="999-999-9999" 
+           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="true"> 
+         </fieldset>
+         <fieldset id="deliveryAddress" class="text">
+           <legend>Delivery Address</legend>
+           <div class="inline">
+           <input type="checkbox" name="SameAddress" value="SameAddress" 
+           onClick="sameAddressClick()" defaultChecked="false"/>
+           <label for="SameAddress">same as billing address</label>
+           </div>
+           <label for="Deliveryfirstname">First Name</label> 
+           <input type="text" name="Deliveryfirstname" id="delivFName" required="true">
+           <label for="Deliverylastname">Last Name</label> 
+           <input type="text" name="Deliverylastname" id="delivLName" required="true">
+           <label for="Deliveryaddress">Street Address</label> 
+           <input type="text" name="Deliveryaddress" id="delivStreet" required="true"> 
+           <label for="Deliverycity">City</label> 
+           <input type="text" name="Deliverycity" id="delivCity" required="true"> 
+           <label for="Deliverystate">State</label>
+           <select name="Deliverystate" id="delivState" required="true">
+             <script>stateOptions();</script>
+           </select>
+           <label for="Deliveryzip">Zip</label> 
+           <input type="text" name="Deliveryzip" id="delivZip" required="true"
+           pattern="[0-9]{5}|[0-9]{5}-[0-9]{4}" size="10" placeholder="12345-6789">
+           <label for="Deliveryphone">Phone</label> 
+           <input type="text" name="Deliveryphone" id="delivPhone" required="true" 
+           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="999-999-9999"> 
+         </fieldset>
+         <fieldset id="deliveryDate" class="checks">
+           <legend>Delivery Date</legend></br>
+           <select name="Deliverymonth" id="month" required="true">
+	           <script>monthOptions();</script>
+           </select>
+           <select name="Deliveryday" id="day" required="true">
+	           <option value="1">1</option>
+	           <option value="2">2</option>
+	           <option value="3">3</option>
+	           <option value="4">4</option>
+	           <option value="5">5</option>
+	           <option value="6">6</option>
+	           <option value="7">7</option>
+	           <option value="8">8</option>
+	           <option value="9">9</option>
+	           <option value="10">10</option>
+	           <option value="11">11</option>
+	           <option value="12">12</option>
+	           <option value="13">13</option>
+	           <option value="14">14</option>
+	           <option value="15">15</option>
+	           <option value="16">16</option>
+	           <option value="17">17</option>
+	           <option value="18">18</option>
+	           <option value="19">19</option>
+	           <option value="20">20</option>
+	           <option value="21">21</option>
+	           <option value="22">22</option>
+	           <option value="23">23</option>
+	           <option value="24">24</option>
+	           <option value="25">25</option>
+	           <option value="26">26</option>
+	           <option value="27">27</option>
+	           <option value="28">28</option>
+	           <option value="29">29</option>
+	           <option value="30">30</option>
+	           <option value="31">31</option>
+           </select>
+           <select name="Deliveryyear" id="year" required="true">
+	           <option value="2015">2015</option>
+	           <option value="2016">2016</option>
+	           <option value="2017">2017</option>
+           </select>
+         </fieldset>
+         <fieldset id="paymentInfo" class="text">
+			     <legend>Payment</legend>
+           <div class="inline">
+           <input type="radio" name="PaymentType" value="visa" checked="true"/>
+           <label for="PaymentType">Visa</label>
+           <input type="radio" name="PaymentType" value="mastercard"/>
+           <label for="PaymentType">MasterCard</label>
+           <input type="radio" name="PaymentType" value="discover"/>
+           <label for="PaymentType">Discover</label>
+           <input type="radio" name="PaymentType" value="american"/>
+           <label for="PaymentType">American Express</label>
+           </div>
+           <label for="CardNumber">Card #</label> 
+           <input type="text" name="CardNumber" id="CardNumber" required="true" 
+           placeholder="1234567812345678" pattern="[0-9]{14,16}" autocomplete="off">
+           <label for="Expmonth">Expiration</label>
+           <select name="Expmonth" id="Expmonth" required="true">
+             <script>monthOptions();</script>
+           </select>
+           <select name="Expyear" id="Expyear" required="true">
+	           <option value="2015">2015</option>
+	           <option value="2016">2016</option>
+	           <option value="2017">2017</option>
+           </select></br>
+           <label for="CVVValue">CVV</label> 
+           <input type="text" name="CVVValue" id="CVVValue" required="true" 
+           pattern="[0-9]{3,4}" autocomplete="off"> 
+         </fieldset>
+         <fieldset id="createAccount" class="text">
+			     <legend>Create Account?</legend>
+           <p>To be able to access your purchase history and make changes to your order,
+           enter a name and password to create an account.
+           </p>
+           <label for="Newusername">Username</label> 
+           <input type="text" name="Newusername" id="Newusername" required="true"> 
+           <label for="password1">Password</label> 
+           <input type="password" name="password1" id="password1" required="true" autocomplete="off"> 
+           <label for="password2">Password (Verify)</label> 
+           <input type="password" name="password2" id="password2" required="true" autocomplete="off"> 
+         </fieldset>
+         <div id="buttonContainer">
+            <input type="submit" value="Place Order" id="orderButton" />
+         </div>
+      </form>
+   </article>
+   <footer>Brian's Flowers <span>&bull;</span> Merrifield, VA</footer>
+</body>
+</html>
